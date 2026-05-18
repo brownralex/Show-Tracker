@@ -6,6 +6,8 @@ authenticated = Profile Page
 */
 
 import 'package:flutter/material.dart';
+import 'package:show_tracker/Pages/login_page.dart';
+import 'package:show_tracker/Pages/placeholder_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthGate extends StatelessWidget {
@@ -30,9 +32,9 @@ class AuthGate extends StatelessWidget {
         final session = snapshot.hasData ? snapshot.data!.session : null;
 
         if (session != null) {
-          return Placeholder1();
+          return const PlaceHolderPage();
         } else {
-          return LoginPage();
+          return const LoginPage();
         }
       },
     );

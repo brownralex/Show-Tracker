@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:show_tracker/Authentication/auth_service.dart';
 
-class Placeholder2 extends StatefulWidget {
-  const Placeholder2({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<Placeholder2> createState() => _Placeholder2State();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _Placeholder2State extends State<Placeholder2> {
+class _LoginPageState extends State<LoginPage> {
   // get auth service
   final authService = AuthService();
 
@@ -46,10 +46,7 @@ class _Placeholder2State extends State<Placeholder2> {
           TextField(controller: _passwordController),
 
           //button
-          ElevatedButton(onPressed: login, 
-          child: const 
-          Text("Login")
-          ),
+          ElevatedButton(onPressed: login, child: const Text("Login/Help")),
         ],
       ),
     );

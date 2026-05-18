@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
           TextField(controller: _passwordController),
 
           //button
-          ElevatedButton(onPressed: login, child: const Text("Login/Help")),
+          ElevatedButton(onPressed: login, child: const Text("Login")),
         ],
       ),
     );

@@ -38,15 +38,32 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 50),
         children: [
           //email
-          TextField(controller: _emailController),
+          TextField(
+            controller: _emailController,
+            decoration: const InputDecoration(labelText: "Email"),
+          ),
 
           // password
-          TextField(controller: _passwordController),
+          TextField(
+            controller: _passwordController,
+            decoration: const InputDecoration(labelText: "Password"),
+          ),
 
+          const SizedBox(height: 12),
           //button
           ElevatedButton(onPressed: login, child: const Text("Login")),
+
+          // Go to register page
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const RegisterPage()),
+            ),
+            child: Text("Don't have an account? Sign up here!"),
+          ),
         ],
       ),
     );

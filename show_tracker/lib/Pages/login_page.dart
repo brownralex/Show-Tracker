@@ -60,7 +60,10 @@ class _LoginPageState extends State<LoginPage> {
 
           const SizedBox(height: 12),
           //button
-          ElevatedButton(onPressed: login, child: const Text("Login")),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(minimumSize: Size(20,20)),
+            onPressed: login, 
+            child: const Text("Login")),
 
           // Go to register page
           GestureDetector(

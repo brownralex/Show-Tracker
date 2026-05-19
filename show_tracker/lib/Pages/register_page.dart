@@ -1,42 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:show_tracker/Authentication/auth_service.dart';
-import 'package:show_tracker/Pages/register_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // get auth service
   final authService = AuthService();
 
   // text controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  // login button pressed
-
-  void login() async {
-    //prepare date
+  // sign up
+  void signUp() async {
+    //prepare data
     final email = _emailController.text;
     final password = _passwordController.text;
+    final confirmPassword = _confirmPasswordController.text;
 
-    // attempt login
+    //check that password and confirm password match
+    if (password != confirmPassword) {
+      ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text("Passwords do not match!")));
+      return;
+    }
+
+    // attempt sign up
     try {
-      await authService.signInWithEmailPassword(email, password);
+      await authService.signUpWithEmailPassword(email, password);
+
+      // pop register page
+      Navigator.pop(context);
     } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text("Error: $e")));
-      }
+       ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Error: $e")));
     }
   }
 
-  // UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,20 +64,15 @@ class _LoginPageState extends State<LoginPage> {
             decoration: const InputDecoration(labelText: "Password"),
           ),
 
+          // confirm password
+          TextField(
+            controller: _confirmPasswordController,
+            decoration: const InputDecoration(labelText: "Confirm Password"),
+          ),
+
           const SizedBox(height: 12),
           //button
-          ElevatedButton(onPressed: login, child: const Text("Login")),
-
-          // Go to register page
-          GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const RegisterPage()),
-            ),
-            child: const Center(
-              child: Text("Don't have an account? Sign up here!"),
-            ),
-          ),
+          ElevatedButton(onPressed: signUp, child: const Text("Sign Up")),
         ],
       ),
     );

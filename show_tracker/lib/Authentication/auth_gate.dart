@@ -6,7 +6,8 @@ authenticated = Profile Page
 */
 
 import 'package:flutter/material.dart';
-import 'package:show_tracker/Pages/login_page.dart';
+import 'package:show_tracker/Pages/initial_page.dart';
+//import 'package:show_tracker/Pages/login_page.dart';
 import 'package:show_tracker/Pages/placeholder_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -34,7 +35,7 @@ class AuthGate extends StatelessWidget {
         if (session != null) {
           return const PlaceHolderPage();
         } else {
-          return const LoginPage();
+          return const InitialPage();
         }
       },
     );
